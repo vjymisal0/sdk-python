@@ -20,6 +20,11 @@ to include examples, links to docs, or any other relevant information.
 
 ### Added
 
+- Added the `temporalio.contrib.gcp.cloud_run.id` module with the `CloudRunIdPlugin` client plugin to set the worker identity on Cloud Run.
+- **Experimental**: New external storage concurrency controls. `ExternalStorage.concurrency` sets
+  `max_driver_operations` (across all drivers on that instance) and `max_operations_per_message`
+  (for one message). Drivers must use `context.limiter` for store and retrieve operations.
+
 ### Changed
 
 - Payload converters exposed by data converters and workflow/activity accessors
@@ -37,6 +42,8 @@ to include examples, links to docs, or any other relevant information.
   remain available at runtime and retain their static type information.
   New code should depend on `temporalio-openai-agents` directly and import
   `temporalio.openai_agents`.
+- **Experimental**: Removed the `max_workflow_task_external_storage_concurrency` `Worker` argument.
+  Use `ExternalStorage.concurrency`.
 
 ### Fixed
 
